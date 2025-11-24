@@ -1,42 +1,21 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'screens/home_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(AllYouCanEatApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class AllYouCanEatApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
-      child: MaterialApp(
-        title: 'Namer App',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
-        ),
-        home: MyHomePage(),
+    return MaterialApp(
+      title: 'All You Can Eat',
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+        useMaterial3: true,
       ),
+      home: HomeScreen(),
     );
   }
 }
 
-class MyAppState extends ChangeNotifier {
-  var current = WordPair.random();
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
-
-    return Scaffold(
-      body: Column(
-        children: [Text('A random idea:'), Text(appState.current.asLowerCase)],
-      ),
-    );
-  }
-}
